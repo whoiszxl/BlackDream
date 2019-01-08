@@ -1,0 +1,6 @@
+server:
+  port: 8080 
+
+swagger:
+  groupName: manger
+  basePackage: com.whoiszxl.blc.controller
