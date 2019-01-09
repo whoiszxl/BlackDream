@@ -20,6 +20,6 @@ public class DreamingController {
 	@ApiOperation(tags="dreaming測試接口", value = "dreaming測試接口說明", notes = "dreaming提示內容", consumes="application/x-www-form-urlencoded")
 	@ApiImplicitParam(name="hight",value="區塊高度",required=false,paramType="query")
 	public Block dreaming(Long hight) {		
-		return new Block(hight, new Byte("000000000000000000000000000"), new Byte("000000000000000000000000000"), System.currentTimeMillis(), new Byte("000000000000000000000000000"));
+		return null;
 	}
 }

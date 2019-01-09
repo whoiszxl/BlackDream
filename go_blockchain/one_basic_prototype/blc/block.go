@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"bytes"
 	"crypto/sha256"
+	"reflect"
 )
 
 //区块结构体

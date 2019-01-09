@@ -1,6 +1,7 @@
 package com.whoiszxl.blc.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -9,20 +10,21 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class Block {
 
 	/** 区块高度 */
 	private Long height;
 	
 	/** 上一个区块的hash值  */
-	private Byte prevBlockHash;
+	private byte[] prevBlockHash;
 	
 	/** 交易数据  */
-	private Byte data;
+	private byte[] data;
 
 	/** 时间戳 */
 	private Long timestamp;
 	
 	/** hash值 */
-	private Byte hash;
+	private byte[] hash;
 }
