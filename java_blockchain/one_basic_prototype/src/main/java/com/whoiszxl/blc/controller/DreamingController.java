@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.whoiszxl.blc.model.Block;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/d")
@@ -16,9 +16,10 @@ import io.swagger.annotations.ApiParam;
 public class DreamingController {
 
 	
-	@ApiOperation(tags="dreaming測試接口", value = "dreaming測試接口說明", notes = "dreaming提示內容", consumes="application/x-www-form-urlencoded")
 	@GetMapping("/dreaming")
-	public Block dreaming(@ApiParam(name="hight",value="區塊高度",required=false) Long hight) {		
+	@ApiOperation(tags="dreaming測試接口", value = "dreaming測試接口說明", notes = "dreaming提示內容", consumes="application/x-www-form-urlencoded")
+	@ApiImplicitParam(name="hight",value="區塊高度",required=false,paramType="query")
+	public Block dreaming(Long hight) {		
 		return new Block(hight, new Byte("000000000000000000000000000"), new Byte("000000000000000000000000000"), System.currentTimeMillis(), new Byte("000000000000000000000000000"));
 	}
 }
