@@ -20,8 +20,14 @@ public class BlockServiceImpl implements BlockService {
 	@Override
 	public ServerResponse<Block> createBlock(String data, Long height, String prevBlockHash) {
 
-		Block block = Block.builder().height(height).prevBlockHash(prevBlockHash).data(data)
-				.timestamp(System.currentTimeMillis()).hash(null).build();
+		Block block = Block.builder()
+				.height(height)
+				.prevBlockHash(prevBlockHash)
+				.data(data)
+				.timestamp(System.currentTimeMillis())
+				.hash(null)
+				.nonce(0L)
+				.build();
 		Block finalBlock = BlockUtils.setHash(block);
 		log.info("設置hash值后的區塊結構：{}", finalBlock);
 		

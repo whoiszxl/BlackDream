@@ -27,4 +27,7 @@ public class Block {
 	
 	/** hash值 */
 	private String hash;
+	
+	/** 工作量校驗值 */
+	private Long nonce;
 }
