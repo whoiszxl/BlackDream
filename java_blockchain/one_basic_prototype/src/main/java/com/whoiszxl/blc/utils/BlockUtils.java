@@ -1,9 +1,7 @@
 package com.whoiszxl.blc.utils;
 
 import java.nio.ByteBuffer;
-
-import com.whoiszxl.blc.model.Block;
-
+import com.whoiszxl.blc.model.po.Block;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

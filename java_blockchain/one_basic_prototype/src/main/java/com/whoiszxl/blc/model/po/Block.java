@@ -1,4 +1,4 @@
-package com.whoiszxl.blc.model;
+package com.whoiszxl.blc.model.po;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

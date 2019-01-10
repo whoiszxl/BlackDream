@@ -1,7 +1,7 @@
 package com.whoiszxl.blc.service;
 
 import com.whoiszxl.blc.common.ServerResponse;
-import com.whoiszxl.blc.model.Block;
+import com.whoiszxl.blc.model.po.Block;
 
 /**
  * 區塊相關服務接口
@@ -10,6 +10,21 @@ import com.whoiszxl.blc.model.Block;
  */
 public interface BlockService {
 
+	/**
+	 * 創建一個區塊
+	 * @param data
+	 * @param height
+	 * @param prevBlockHash
+	 * @return
+	 */
 	ServerResponse<Block> createBlock(String data, Long height, byte[] prevBlockHash);
 	
+	/**
+	 * 創建一個創世區塊
+	 * @param data
+	 * @param height
+	 * @param prevBlockHash
+	 * @return
+	 */
+	ServerResponse<Block> createGenesisBlock(String data);
 }
