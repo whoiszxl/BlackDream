@@ -7,11 +7,13 @@ import (
 
 
 func main() {
-	genesisBlockchain := blc.CreateBlockchainWithGenesisBlock()
+	blockchain := blc.CreateBlockchainWithGenesisBlock()
 
-	fmt.Println("-----------------")
-	fmt.Println(genesisBlockchain)
+	// 新区块
+	blockchain.AddBlockToBlockchain("100 -> wangfei",blockchain.Blocks[len(blockchain.Blocks) - 1].Height + 1,blockchain.Blocks[len(blockchain.Blocks) - 1].Hash)
+	blockchain.AddBlockToBlockchain("300 -> huixian",blockchain.Blocks[len(blockchain.Blocks) - 1].Height + 1,blockchain.Blocks[len(blockchain.Blocks) - 1].Hash)
 
-	fmt.Println(genesisBlockchain.Blocks)
-	fmt.Println(genesisBlockchain.Blocks[0])
+	fmt.Println("-----------------------------")
+	fmt.Println(blockchain)
+	fmt.Println(blockchain.Blocks)
 }
