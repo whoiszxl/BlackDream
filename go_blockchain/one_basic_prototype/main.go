@@ -7,8 +7,11 @@ import (
 
 
 func main() {
-	block := blc.CreateGenesisBlock("生成创世区块")
-	
-	fmt.Print("打印生成的区块:")
-	fmt.Println(block)
+	genesisBlockchain := blc.CreateBlockchainWithGenesisBlock()
+
+	fmt.Println("-----------------")
+	fmt.Println(genesisBlockchain)
+
+	fmt.Println(genesisBlockchain.Blocks)
+	fmt.Println(genesisBlockchain.Blocks[0])
 }
