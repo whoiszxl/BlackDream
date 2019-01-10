@@ -6,7 +6,9 @@ import com.whoiszxl.blc.common.ServerResponse;
 import com.whoiszxl.blc.model.Block;
 import com.whoiszxl.blc.service.BlockService;
 import com.whoiszxl.blc.utils.BlockUtils;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 public class BlockServiceImpl implements BlockService {
 	
@@ -20,6 +22,7 @@ public class BlockServiceImpl implements BlockService {
 		.hash(null)
 		.build();
 		Block finalBlock = BlockUtils.setHash(block);
+		log.info("設置hash值后的區塊結構：{}", finalBlock);
 		return ServerResponse.createBySuccess(finalBlock);
 	}
 

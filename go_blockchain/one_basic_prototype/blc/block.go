@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"bytes"
 	"crypto/sha256"
-	"reflect"
 )
 
 //区块结构体
@@ -42,6 +41,8 @@ func (block *Block) SetHash() {
 
 	//4.生成hash值
 	hash := sha256.Sum256(blockBytes)
+	fmt.Print("【设置区块hash值】生成的当前区块hash值：")
+	fmt.Println(hash)
 	block.Hash = hash[:]
 }
 
