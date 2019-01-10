@@ -7,8 +7,8 @@ import (
 
 
 func main() {
-	block := blc.NewBlock("生成区块", 1, []byte{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0})
-
+	block := blc.CreateGenesisBlock("生成创世区块")
+	
 	fmt.Print("打印生成的区块:")
 	fmt.Println(block)
 }

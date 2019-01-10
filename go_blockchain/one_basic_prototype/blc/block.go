@@ -25,7 +25,6 @@ type Block struct {
 //给区块设置hash值
 func (block *Block) SetHash() {
 	//1.将区块高度转字节
-	fmt.Println("【设置区块hash值】区块高度字符串:" + strconv.FormatInt(block.Height, 10))
 	heightBytes := IntToHex(block.Height)
 	fmt.Print("【设置区块hash值】区块高度字节码:")
 	fmt.Println(heightBytes)
@@ -41,8 +40,6 @@ func (block *Block) SetHash() {
 
 	//4.生成hash值
 	hash := sha256.Sum256(blockBytes)
-	fmt.Print("【设置区块hash值】生成的当前区块hash值：")
-	fmt.Println(hash)
 	block.Hash = hash[:]
 }
 
@@ -54,4 +51,9 @@ func NewBlock(data string, height int64, prevBlockHash []byte) *Block {
 	block.SetHash()
 
 	return block
+}
+
+//生成创世区块
+func CreateGenesisBlock(data string) *Block {
+	return NewBlock(data,1, []byte{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0})
 }
