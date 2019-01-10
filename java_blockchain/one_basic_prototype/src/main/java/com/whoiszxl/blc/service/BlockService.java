@@ -17,7 +17,7 @@ public interface BlockService {
 	 * @param prevBlockHash
 	 * @return
 	 */
-	ServerResponse<Block> createBlock(String data, Long height, byte[] prevBlockHash);
+	ServerResponse<Block> createBlock(String data, Long height, String prevBlockHash);
 	
 	/**
 	 * 創建一個創世區塊

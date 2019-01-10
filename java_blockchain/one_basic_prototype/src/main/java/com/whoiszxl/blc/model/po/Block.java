@@ -17,14 +17,14 @@ public class Block {
 	private Long height;
 	
 	/** 上一个区块的hash值  */
-	private byte[] prevBlockHash;
+	private String prevBlockHash;
 	
 	/** 交易数据  */
-	private byte[] data;
+	private String data;
 
 	/** 时间戳 */
 	private Long timestamp;
 	
 	/** hash值 */
-	private byte[] hash;
+	private String hash;
 }

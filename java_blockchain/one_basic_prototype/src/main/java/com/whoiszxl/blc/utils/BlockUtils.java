@@ -22,11 +22,11 @@ public class BlockUtils {
 	
 	
 	/**
-	 * 設置區塊的hash值
+	 * 設置區塊的hash值 (字節碼版本,暫時用不到)
 	 * @param block
 	 * @return
 	 */
-	public static Block setHash(Block block) {
+	public static Block setHashBak(Block block) {
 		//1. 轉換高度為字節數組
 		byte[] heightBytes = int2ByteArray(block.getHeight());
 		log.info("數組高度轉換字節后：{}", heightBytes);
@@ -37,12 +37,25 @@ public class BlockUtils {
 		log.info("時間戳轉換字節后：{}", timestampBytes);
 		
 		//拼接屬性
-		byte[] blockBytes = CryptUtils.concatAll(heightBytes, block.getPrevBlockHash(), block.getData(), timestampBytes);
-		log.info("組合后的區塊字節數組：{}", blockBytes);
+		//byte[] blockBytes = CryptUtils.concatAll(heightBytes, block.getPrevBlockHash(), block.getData(), timestampBytes);
+		//log.info("組合后的區塊字節數組：{}", blockBytes);
 		
 		//sha256加密
-		byte[] blockHash = CryptUtils.string2SHA256(blockBytes.toString());
-		block.setHash(blockHash);
+		//byte[] blockHash = CryptUtils.string2SHA256(blockBytes.toString());
+		//block.setHash(blockHash);
+		return block;
+	}
+	
+	
+	/**
+	 * 設置區塊的hash值
+	 * @param block
+	 * @return
+	 */
+	public static Block setHash(Block block) {
+		String mergeStr = block.getHeight() + block.getPrevBlockHash() + block.getData() + block.getTimestamp();
+		String hash = CryptUtils.string2SHA256(mergeStr);
+		block.setHash(hash);
 		return block;
 	}
 }

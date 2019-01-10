@@ -33,7 +33,7 @@ public class CryptUtils {
 	 * @param str
 	 * @return
 	 */
-	public static byte[] string2SHA256(String str) {
+	public static String string2SHA256(String str) {
 		MessageDigest messageDigest;
 
 		String encdeStr = "";
@@ -46,7 +46,7 @@ public class CryptUtils {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		return encdeStr.getBytes();
+		return encdeStr;
 
 	}
 }
