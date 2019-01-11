@@ -7,13 +7,15 @@ import (
 
 
 func main() {
-	blockchain := blc.CreateBlockchainWithGenesisBlock()
+	//data string,height int64,prevBlockHash []byte
+	block := blc.NewBlock("Test",1,[]byte{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0})
 
-	// 新区块
-	blockchain.AddBlockToBlockchain("100 -> wangfei",blockchain.Blocks[len(blockchain.Blocks) - 1].Height + 1,blockchain.Blocks[len(blockchain.Blocks) - 1].Hash)
-	blockchain.AddBlockToBlockchain("300 -> huixian",blockchain.Blocks[len(blockchain.Blocks) - 1].Height + 1,blockchain.Blocks[len(blockchain.Blocks) - 1].Hash)
+	fmt.Println("--------------------")
 
-	fmt.Println("-----------------------------")
-	fmt.Println(blockchain)
-	fmt.Println(blockchain.Blocks)
+	fmt.Printf("%d\n",block.Nonce)
+	fmt.Printf("%x\n",block.Hash)
+
+	proofOfWork := blc.NewProofOfWork(block)
+
+	fmt.Printf("%v",proofOfWork.IsValid())
 }

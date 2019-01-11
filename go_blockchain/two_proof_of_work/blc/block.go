@@ -27,6 +27,7 @@ func NewBlock(data string, height int64, prevBlockHash []byte) *Block {
 
 	//调用工作量证明的方法并且返回有效的Hash和Nonce
 	pow := NewProofOfWork(block)
+	// 挖矿验证
 	hash,nonce := pow.Run()
 
 	block.Hash = hash[:]
