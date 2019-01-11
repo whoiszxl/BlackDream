@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.whoiszxl.blc</groupId>
-	<artifactId>one_basic_prototype</artifactId>
+	<artifactId>blockchain</artifactId>
 	<version>1.0.0</version>
-	<name>one_basic_prototype</name>
+	<name>blockchain</name>
 	<description>区块链公链Springboot版</description>
 
 	<properties>
