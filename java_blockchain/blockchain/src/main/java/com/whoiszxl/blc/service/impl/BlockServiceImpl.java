@@ -2,12 +2,14 @@ package com.whoiszxl.blc.service.impl;
 
 import java.util.LinkedList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.whoiszxl.blc.common.ServerResponse;
 import com.whoiszxl.blc.model.po.Block;
 import com.whoiszxl.blc.model.po.Blockchain;
 import com.whoiszxl.blc.service.BlockService;
+import com.whoiszxl.blc.service.ProofOfWorkService;
 import com.whoiszxl.blc.utils.BlockUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,6 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 public class BlockServiceImpl implements BlockService {
 	
 	public static Blockchain chain = new Blockchain();
+	
+	@Autowired
+	private ProofOfWorkService proofOfWorkService;
 
 	@Override
 	public ServerResponse<Block> createBlock(String data, Long height, String prevBlockHash) {
@@ -28,7 +33,8 @@ public class BlockServiceImpl implements BlockService {
 				.hash(null)
 				.nonce(0L)
 				.build();
-		Block finalBlock = BlockUtils.setHash(block);
+		//Block finalBlock = BlockUtils.setHash(block);
+		Block finalBlock = proofOfWorkService.work(block);
 		log.info("設置hash值后的區塊結構：{}", finalBlock);
 		
 		if(chain.getBlocks() == null) {
