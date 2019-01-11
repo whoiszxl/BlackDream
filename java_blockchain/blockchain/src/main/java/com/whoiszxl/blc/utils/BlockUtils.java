@@ -58,4 +58,17 @@ public class BlockUtils {
 		block.setHash(hash);
 		return block;
 	}
+	
+	
+	public static byte[] mergeBlockParam(Block block, Long nonce, Long targetBit) {
+		byte[] data = CryptUtils.concatAll(
+				block.getPrevBlockHash().getBytes(),
+				block.getData().getBytes(),
+				DataTransformUtils.longToBytes(block.getTimestamp()),
+				DataTransformUtils.longToBytes(targetBit),
+				DataTransformUtils.longToBytes(nonce),
+				DataTransformUtils.longToBytes(block.getHeight()));
+		return data;
+	}
+	
 }
