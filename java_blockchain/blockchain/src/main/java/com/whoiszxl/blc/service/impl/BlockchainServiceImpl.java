@@ -10,6 +10,7 @@ import com.whoiszxl.blc.model.po.Block;
 import com.whoiszxl.blc.model.po.Blockchain;
 import com.whoiszxl.blc.service.BlockService;
 import com.whoiszxl.blc.service.BlockchainService;
+import com.whoiszxl.blc.service.ProofOfWorkService;
 import com.whoiszxl.blc.utils.BlockUtils;
 import com.whoiszxl.blc.utils.CryptUtils;
 
@@ -21,6 +22,9 @@ public class BlockchainServiceImpl implements BlockchainService {
 
 	@Autowired
 	private BlockService blockService;
+	
+	@Autowired
+	private ProofOfWorkService proofOfWorkService;
 	
 	@Override
 	public ServerResponse<Blockchain> CreateBlockchainWithGenesisBlock() {
@@ -48,7 +52,7 @@ public class BlockchainServiceImpl implements BlockchainService {
 				.timestamp(System.currentTimeMillis())
 				.hash(null)
 				.build();
-		block = BlockUtils.setHash(block);
+		block = proofOfWorkService.work(block);
 		boolean addBlockFlag = blockService.addBlock(block);
 		if(addBlockFlag) {
 			return ServerResponse.createBySuccess(block);
