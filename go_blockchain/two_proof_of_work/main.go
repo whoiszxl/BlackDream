@@ -12,10 +12,12 @@ func main() {
 
 	fmt.Println("--------------------")
 
+	bytes := block.Serialize()
+
+	fmt.Println(bytes)
+
+	block = blc.DeserializeBlock(bytes)
+
 	fmt.Printf("%d\n",block.Nonce)
 	fmt.Printf("%x\n",block.Hash)
-
-	proofOfWork := blc.NewProofOfWork(block)
-
-	fmt.Printf("%v",proofOfWork.IsValid())
 }

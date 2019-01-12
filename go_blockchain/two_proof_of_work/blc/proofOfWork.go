@@ -7,8 +7,9 @@ import (
 	"fmt"
 )
 
-// 256位Hash里面前面至少要有8个零
-const targetBit  = 8
+// 256位Hash里面前面至少要有16个零
+// 64位hash值前面最少4個0
+const targetBit  = 16
 
 type ProofOfWork struct {
 	Block *Block // 当前要验证的区块
