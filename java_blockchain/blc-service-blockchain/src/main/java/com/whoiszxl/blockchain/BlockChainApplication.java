@@ -9,7 +9,7 @@ import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EntityScan("com.whoiszxl.framework.domain.cms")//扫描实体类
+@EntityScan("com.whoiszxl.framework.domain")//扫描实体类
 @ComponentScan(basePackages={"com.whoiszxl.api"})//扫描接口
 @ComponentScan(basePackages={"com.whoiszxl.framework"})//扫描common包下的类
 @ComponentScan(basePackages={"com.whoiszxl.blockchain"})//扫描本项目下的所有类

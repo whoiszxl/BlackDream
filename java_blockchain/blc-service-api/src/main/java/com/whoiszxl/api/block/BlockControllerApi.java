@@ -13,4 +13,8 @@ public interface BlockControllerApi {
     @ApiImplicitParams({
         @ApiImplicitParam(name = "str", value = "测试语", required = true, paramType = "query", dataType = "string") })
     public String test(String str);
+    
+    
+    @ApiOperation("创建一个带创世区块的区块链")
+    public String createBlockchainWithGenesisBlock();
 }

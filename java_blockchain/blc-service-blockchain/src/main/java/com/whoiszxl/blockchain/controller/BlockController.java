@@ -13,8 +13,13 @@ public class BlockController implements BlockControllerApi{
     @Override
     @GetMapping("/test")
     public String test(String str) {
-        
         return "hello world " + str;
+    }
+
+    @Override
+    public String createBlockchainWithGenesisBlock() {
+        
+        return null;
     }
 
 }
