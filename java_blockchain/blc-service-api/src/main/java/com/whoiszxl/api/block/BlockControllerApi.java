@@ -11,7 +11,6 @@ public interface BlockControllerApi {
 
     @ApiOperation("测试用")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "str", value = "测试语", required = true, paramType = "path", dataType = "string") })
-    public String add(String str);
-    
+        @ApiImplicitParam(name = "str", value = "测试语", required = true, paramType = "query", dataType = "string") })
+    public String test(String str);
 }
