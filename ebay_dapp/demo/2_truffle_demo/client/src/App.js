@@ -65,6 +65,24 @@ class App extends Component {
           Try changing the value stored on <strong>line 40</strong> of App.js.
         </p>
         <div>The stored value is: {this.state.storageValue}</div>
+
+        <input 
+        ref="dataInput"
+        style={{width:200, height:30}} />
+        <button 
+        onClick={() => {
+          var inputNumber = Number(this.refs.dataInput.value);
+          // this.state.web3.eth.getCoinbase().then((coinBaseAddress) => {
+          //   this.state.contract.methods.set(inputNumber).call({from: this.state.accounts[0]}).then((a) => {
+          //     console.log(a);
+          //   });
+          // });
+
+          this.state.contract.methods.set(11).call(11, {from: '0x226C753B8FE31297c26DEDD6A625562BfC242F7c'}).then((result)=>{
+            console.log(result);
+          });
+        }}
+        style={{width:100, height:40}}>修改</button>
       </div>
     );
   }
