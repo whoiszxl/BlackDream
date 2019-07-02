@@ -14,7 +14,7 @@ contract EcommerceStore {
     //存储卖家的钱包地址
     mapping(uint => address) productIdInStore;
     
-    address public defaultHighestBidder;
+    address payable public defaultHighestBidder;
 
 
     struct Bid {
@@ -33,7 +33,7 @@ contract EcommerceStore {
         uint auctionStartTime; //拍卖开始时间
         uint auctionEndTime; //拍卖结束时间
         uint startPrice; //起拍价
-        address highestBidder; //出价最高的投标人
+        address payable highestBidder; //出价最高的投标人
         uint highestBid; //最高出价
         uint secondHighestBid; //第二高出价
         uint totalBids; //总报价
@@ -69,7 +69,7 @@ contract EcommerceStore {
         require(now >= product.auctionStartTime);
         require(now <= product.auctionEndTime);
         require(msg.value > product.startPrice);
-        require(product.bids[msg.sender][_bid].bidder == 0);
+        require(product.bids[msg.sender][_bid].bidder == defaultHighestBidder);
         product.bids[msg.sender][_bid] = Bid(msg.sender, _productId, msg.value, false);
         product.totalBids += 1;
         return true;
@@ -77,16 +77,16 @@ contract EcommerceStore {
 
 
     /** 公告 */
-    function revealBid(uint _productId, string _amount, string _secret) public {
+    function revealBid(uint _productId, string memory _amount, string memory _secret) public {
         //通过传入的商品ID获取到商品详细信息
         Product storage product = stores[productIdInStore[_productId]][_productId];
         require(now > product.auctionEndTime);
         //获取到加密后的key
-        bytes32 sealedBid = keccak256(_amount, _secret);
+        bytes32 sealedBid = keccak256(bytes(concat(_amount, _secret)));
 
         //通过加密key到商品的bids中拿到投标人的信息,并且需要地址存在，
         Bid memory bidInfo = product.bids[msg.sender][sealedBid];
-        require(bidInfo.bidder > 0);
+        require(bidInfo.bidder > defaultHighestBidder);
         require(bidInfo.revealed == false);
 
         uint refund; //退款
@@ -97,7 +97,7 @@ contract EcommerceStore {
             refund = bidInfo.value;
         }else {
             //如果没有最高出价的投标人,那就把当前调用合约的用户设置为最高价投标人，并设置最高出价和第二高的出价，并将fake报价减去实际报价，得到退款的差价
-            if (product.highestBidder == 0) {
+            if (product.highestBidder == defaultHighestBidder) {
                 product.highestBidder = msg.sender;
                 product.highestBid = amount;
                 product.secondHighestBid = product.startPrice;
@@ -132,15 +132,58 @@ contract EcommerceStore {
     }
 
 
+
+
+
+    /********************* 辅助函数 ****************************/
+
+
+    /** 获取最高出价人的信息 */
+    function highestBidderInfo(uint _productId) public view returns (address, uint, uint) {
+        Product memory product = stores[productIdInStore[_productId]][_productId];
+        return (product.highestBidder, product.highestBid, product.secondHighestBid);
+    }
+
+
+    /** 获取所有人的总报价 */
+    function totalBids(uint _productId) public view returns (uint) {
+        Product memory product = stores[productIdInStore[_productId]][_productId];
+        return product.totalBids;
+    }
+
+
+
     /** 字符串转uint */
-    function stringToUint(string s) pure private returns (uint) {
+    function stringToUint(string memory s) pure private returns (uint) {
         bytes memory b = bytes(s);
         uint result = 0;
         for (uint i = 0; i < b.length; i++) {
-            if (b[i] >= 48 && b[i] <= 57) {
-                result = result * 10 + (uint(b[i]) - 48);
+            if (uint8(b[i]) >= 48 && uint8(b[i]) <= 57) {
+                result = result * 10 + (uint8(b[i]) - 48);
             }
         }
         return result; 
     }
+    
+    function concat(string memory _base, string memory _value) public pure returns (string memory) {
+        bytes memory _baseBytes = bytes(_base);
+        bytes memory _valueBytes = bytes(_value);
+
+        string memory _tmpValue = new string(_baseBytes.length + _valueBytes.length);
+        bytes memory _newValue = bytes(_tmpValue);
+
+        uint i;
+        uint j;
+
+        for(i=0; i<_baseBytes.length; i++) {
+            _newValue[j++] = _baseBytes[i];
+        }
+
+        for(i=0; i<_valueBytes.length; i++) {
+            _newValue[j++] = _valueBytes[i++];
+        }
+
+        return string(_newValue);
+    }
+    
 }
