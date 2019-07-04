@@ -1,5 +1,13 @@
 import Web3 from "web3";
-import metaCoinArtifact from "../../build/contracts/MetaCoin.json";
+import { default as contract } from 'truffle-contract'
+import ecommerce_store_artifacts from '../../build/contracts/EcommerceStore.json';
+
+var EcommerceStore = contract(ecommerce_store_artifacts);
+
+const ipfsAPI = require('ipfs-api');
+const ethUtil = require('ethereumjs-util');
+
+const ipfs = ipfsAPI({host:'118.126.92.128', port:'5001', protocol:'http'});
 
 const App = {
   web3: null,
@@ -8,51 +16,8 @@ const App = {
 
   start: async function() {
     const { web3 } = this;
-
-    try {
-      // get contract instance
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = metaCoinArtifact.networks[networkId];
-      this.meta = new web3.eth.Contract(
-        metaCoinArtifact.abi,
-        deployedNetwork.address,
-      );
-
-      // get accounts
-      const accounts = await web3.eth.getAccounts();
-      this.account = accounts[0];
-
-      this.refreshBalance();
-    } catch (error) {
-      console.error("Could not connect to contract or chain.");
-    }
-  },
-
-  refreshBalance: async function() {
-    const { getBalance } = this.meta.methods;
-    const balance = await getBalance(this.account).call();
-
-    const balanceElement = document.getElementsByClassName("balance")[0];
-    balanceElement.innerHTML = balance;
-  },
-
-  sendCoin: async function() {
-    const amount = parseInt(document.getElementById("amount").value);
-    const receiver = document.getElementById("receiver").value;
-
-    this.setStatus("Initiating transaction... (please wait)");
-
-    const { sendCoin } = this.meta.methods;
-    await sendCoin(receiver, amount).send({ from: this.account });
-
-    this.setStatus("Transaction complete!");
-    this.refreshBalance();
-  },
-
-  setStatus: function(message) {
-    const status = document.getElementById("status");
-    status.innerHTML = message;
-  },
+    ipfs.version().then(function(f) {console.log(f)});
+  }
 };
 
 window.App = App;
