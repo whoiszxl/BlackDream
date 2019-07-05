@@ -7,7 +7,7 @@ var EcommerceStore = contract(ecommerce_store_artifacts);
 const ipfsAPI = require('ipfs-api');
 const ethUtil = require('ethereumjs-util');
 
-const ipfs = ipfsAPI({host:'118.126.92.128', port:'5001', protocol:'http'});
+const ipfs = ipfsAPI({host:'whoiszxl.com', port:'5001', protocol:'http'});
 
 const App = {
   web3: null,
