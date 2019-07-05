@@ -32,7 +32,7 @@ contract EcommerceStore {
         string descLink; //详情Hash
         uint auctionStartTime; //拍卖开始时间
         uint auctionEndTime; //拍卖结束时间
-        uint startPrice; //起拍价
+        uint256 startPrice; //起拍价
         address payable highestBidder; //出价最高的投标人
         uint highestBid; //最高出价
         uint secondHighestBid; //第二高出价

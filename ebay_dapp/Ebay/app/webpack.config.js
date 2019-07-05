@@ -11,5 +11,13 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([{ from: "./src/index.html", to: "index.html" }]),
   ],
+  module: {
+    rules: [
+      {
+       test: /\.css$/,
+       use: [ 'style-loader', 'css-loader' ]
+      }
+    ]
+  },
   devServer: { contentBase: path.join(__dirname, "dist"), compress: true },
 };
