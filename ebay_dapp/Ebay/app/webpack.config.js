@@ -10,6 +10,7 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([{ from: "./src/index.html", to: "index.html" }]),
+    new CopyWebpackPlugin([{ from: "./src/list-item.html", to: "list-item.html" }]),
   ],
   module: {
     rules: [
