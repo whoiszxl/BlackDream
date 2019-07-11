@@ -9,7 +9,7 @@ var EcommerceStore = contract(ecommerce_store_artifacts);
 const ipfsAPI = require('ipfs-api');
 const ethUtil = require('ethereumjs-util');
 
-const ipfs = ipfsAPI({host:'whoiszxl.com', port:'5001', protocol:'http'});
+const ipfs = ipfsAPI({host:'localhost', port:'5001', protocol:'http'});
 
 
 
@@ -116,6 +116,7 @@ function buildProduct(product, id) {
 function saveProduct(reader, decodedParams) {
   let imageId, descId;
   saveImageToIpfs(reader).then(function(id) {
+    console.log("添加图片");
     imageId = id;
     saveTextBlobToIpfs(decodedParams["product-description"]).then(function(id) {
       descId = id;
