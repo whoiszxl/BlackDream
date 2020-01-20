@@ -1,9 +1,0 @@
-server:
-  port: ${PORT:10101}
-spring:
-  application:
-    name: blc-service-blockchain
-    
-    
-leveldb: 
-  filepath: ./db
