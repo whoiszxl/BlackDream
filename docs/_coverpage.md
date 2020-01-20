@@ -2,11 +2,10 @@
 
 # XEXCHANGE
 
-> 使用Java开发公链与交易所项目
+> 全栈开发从入门到秃头，将随机学习成体系学习
 
-* 通过Java Springboot开发一个简易版公链项目，并实现钱包功能
-* 再通过SpringCloud开发一套中心化交易所项目
-* 再用Flutter实现移动端的APP
+* 将无目的地随机学习转为体系学习，总结出系统的经验
+* 从记录各种学习方法到框架应用，真实项目开发
 
-[GitHub](https://github.com/whoiszxl/BohemianRhapsody)
-[Get Started](#Java公链与SpringCloud交易所项目)
+[GitHub](https://github.com/whoiszxl/KillerQueen)
+[Get Started](#全栈开发体系学习)
