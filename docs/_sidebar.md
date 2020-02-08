@@ -1,6 +1,5 @@
 * 简介
   * [1.序言](markdown/exchange_starter/1.序言)
-  * [2.学习所需知识点](markdown/exchange_starter/2.项目所用技术)
 
 * 交易系统基础
   * [1.区块链的基础概念](markdown/exchange_base/1.区块链的基础概念)
