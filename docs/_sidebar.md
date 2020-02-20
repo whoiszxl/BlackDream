@@ -1,11 +1,10 @@
 * 简介
   * [1.序言](markdown/exchange_starter/1.序言)
 
-* 交易系统基础
-  * [1.区块链的基础概念](markdown/exchange_base/1.区块链的基础概念)
-  * [2.数字货币的基本概念](markdown/exchange_base/2.数字货币的基本概念)
-  * [3.交易系统的基本概念](markdown/exchange_base/3.交易系统的基本概念)
-  * [4.几种基础的公链](markdown/exchange_base/4.几种基础的公链)
+* 基础技能
+  * [1.Git工作使用与常用命令](markdown/base/1.Git工作使用与常用命令.md)
+  * [2.MySQL工作使用与常用语句](markdown/base/2.MySQL工作使用与常用语句)
+  * [3.Linux工作使用与常用命令](markdown/base/3.Linux工作使用与常用命令)
 
 * 交易系统架构与业务
   * [1.交易系统概览](markdown/exchange_framework_business/1.交易系统概览)
